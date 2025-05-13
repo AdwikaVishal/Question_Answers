@@ -1,0 +1,54 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+class SessionCache {
+
+    LinkedHashMap<String, String> sessions = new LinkedHashMap<>();
+    int cachesize = 10;
+
+    public SessionCache() {
+        sessions.put("session1", "User1");
+        sessions.put("session2", "User2");
+        sessions.put("session3", "User3");
+        sessions.put("session4", "User4");
+        sessions.put("session5", "User5");
+        sessions.put("session6", "User6");
+        sessions.put("session7", "User7");
+        sessions.put("session8", "User8");
+        sessions.put("session9", "User9");
+        sessions.put("session10", "User10");
+    }
+
+    public void put() {
+        if (sessions.size() >= cachesize) {
+            remove();
+        }
+        sessions.put("session11", "User11");
+    }
+
+    public void remove() {
+        Map.Entry<String, String> lastEntry = null;
+        for (Map.Entry<String, String> entry : sessions.entrySet()) {
+            lastEntry = entry;
+        }
+
+        if (lastEntry != null) {
+            System.out.println("Removing: " + lastEntry.getKey() + " => " + lastEntry.getValue());
+            sessions.remove(lastEntry.getKey());
+        }
+    }
+
+    public void printSessions() {
+        for (Map.Entry<String, String> entry : sessions.entrySet()) {
+            System.out.println(entry.getKey() + " => " + entry.getValue());
+        }
+    }
+
+    public static void main(String[] args) {
+        SessionCache cache = new SessionCache();
+        cache.put();
+        cache.printSessions();
+    }
+}
