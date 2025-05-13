@@ -1,0 +1,42 @@
+Q4-
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Order {
+    int OrderId;
+    String CustomerName;
+    String item;
+
+    public Order(int OrderId, String CustomerName, String item) {
+        this.OrderId = OrderId;
+        this.CustomerName = CustomerName;
+        this.item = item;
+    }
+}
+
+class process {
+    Queue<Order> queue = new LinkedList<>();
+
+    public void addOrder(Order order) {
+        queue.add(order);
+        System.out.println("Added: " + order);
+    }
+
+    public void fulfillOrder() {
+        if (!queue.isEmpty()) {
+            Order order = queue.poll();
+            System.out.println("Fulfilling: " + order);
+        } else {
+            System.out.println("No orders to fulfill.");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        process Process = new process();
+
+        Process.addOrder(new Order(1, "Alice", "Pizza"));
+
+    }
+}
