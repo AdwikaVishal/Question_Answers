@@ -1,0 +1,31 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Main {
+    public static void main(String[] args) {
+        class Person {
+            String name;
+            int age;
+
+            Person(String name, int age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            @Override
+            public String toString() {
+                return name + " (" + age + ")";
+            }
+
+        }
+
+        List<Person> people = Arrays.asList(
+                new Person("John", 25),
+                new Person("Anna", 32),
+                new Person("Peter", 25));
+        Stream<Person> data = people.stream();
+        data.filter(n -> n.age > 30).forEach(System.out::println);
+
+    }
+}
