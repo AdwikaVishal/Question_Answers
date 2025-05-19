@@ -1,0 +1,33 @@
+import java.util.*;
+
+class MyRunnable implements Runnable {
+    public void run() {
+        for (int i = 0; i < 3; i++) {
+            System.out.println(Thread.currentThread().getName() + " is working on task " + i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Thread was interrupted.");
+
+            }
+        }
+
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new MyRunnable());
+        Thread t2 = new Thread(new MyRunnable());
+        Thread t3 = new Thread(new MyRunnable());
+
+        t1.setName("Person-1");
+        t2.setName("Person-2");
+        t3.setName("Person-3");
+
+        t1.start();
+        t2.start();
+        t3.start();
+
+    }
+}
