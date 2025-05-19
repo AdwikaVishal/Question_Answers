@@ -1,0 +1,18 @@
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println("Cleaning up resources...");
+    }
+
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new MyRunnable());
+        Runtime.getRuntime().addShutdownHook(t1);
+        System.out.println("Program is closing");
+
+    }
+}
