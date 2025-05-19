@@ -1,0 +1,25 @@
+import java.util.*;
+
+class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println(Thread.currentThread().getName());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            System.out.println("Thread was interrupted.");
+
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new MyRunnable());
+        Thread t2 = new Thread(new MyRunnable());
+        t1.setName("Worker-1");
+        t2.setName("Worker-2");
+        t1.start();
+        t2.start();
+
+    }
+}
